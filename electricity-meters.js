@@ -1,4 +1,3 @@
-// this is our
 module.exports = function(pool) {
 
 	// list all the streets the we have on records
@@ -14,12 +13,6 @@ module.exports = function(pool) {
 			 INNER JOIN street on electricity_meter.street_id = street.id where street_id = $1`, [streetId]);
 			return street.rows;
 		}
-
-// 	  SELECT Orders.OrderID, Customers.CustomerName, Orders.OrderDate
-//     FROM Orders
-//     INNER JOIN Customers ON Orders.CustomerID=Customers.CustomerID;
-
-
 	}
 
 	// return all the appliances

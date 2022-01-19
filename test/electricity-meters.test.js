@@ -3,7 +3,6 @@ const pg = require('pg');
 const Pool = pg.Pool;
 const ElectricityMeters = require('../electricity-meters');
 
-// const connectionString = process.env.DATABASE_URL || 'postgresql://topup:topup00@localhost:5432/topups';
 const connectionString = process.env.DATABASE_URL || 'postgresql://decproc:1234@localhost:5432/topups';
 
 const pool = new Pool({
@@ -75,15 +74,6 @@ describe("The Electricity meter", function() {
 		assert.deepStrictEqual(storeData, appliances);
 
 	});
-
-	// it("should see all the appliances", async function() {
-
-	// 	const electricityMeters = ElectricityMeters(pool);
-	// 	const appliances = await electricityMeters.appliances();
-		
-	// 	assert.deepStrictEqual([], appliances);
-
-	// });
 
 	it("should be able to topup electricity", async function() {
 

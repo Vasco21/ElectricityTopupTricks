@@ -7,9 +7,6 @@ const app = express();
 const PORT =  process.env.PORT || 3017;
 
 const ElectricityMeters = require('./electricity-meters');
-
-// const connectionString = process.env.DATABASE_URL || 'postgresql://localhost:5432/topups';
-
 const connectionString = process.env.DATABASE_URL || 'postgresql://decproc:1234@localhost:5432/topups';
 
 let pool 
@@ -48,13 +45,13 @@ app.get('/streets', async function(req, res) {
 	});
 });
 
-app.get('/meters/:street_id', async function(req, res) {
-
 	// use the streetMeters method in the factory function...
 	// send the street id in as sent in by the URL parameter street_id - req.params.street_id
 	// create  template called street_meters.handlebars
 	// in there loop over all the meters and show them on the screen.
 	// show the street number and name and the meter balance
+
+app.get('/meters/:street_id', async function(req, res) {
 	var id = req.params.street_id;
 	var data = await electricityMeters.streetMeters(id)
 	
@@ -71,22 +68,22 @@ app.get('/appliance', async function(req, res) {
 	})
 })
 
+
+// show the current meter balance and select the appliance you are using electricity for
 app.get('/meter/use/:meter_id', async function(req, res) {
 	var meterId = req.params.meter_id;
 	var appliance = await electricityMeters.appliances(meterId)
-	console.log(appliance)
 
-	// show the current meter balance and select the appliance you are using electricity for
 	res.render('use_electicity', {
 		meters : appliance,
 		meterId : meterId
 	});
 });
 
-app.post('/usemeter', async function(req, res) {
-	console.log(req.body)
 	// update the meter balance with the usage of the appliance selected.
 	// [Object: null prototype] { appliance: '3', meterId: '1' }
+app.post('/usemeter', async function(req, res) {
+	console.log(req.body)
 	var appliance = req.body.appliance;
 	var meterId = req.body.meterId
 
