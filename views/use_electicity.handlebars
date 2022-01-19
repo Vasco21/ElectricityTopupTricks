@@ -1,0 +1,13 @@
+<form method="POST" action="/usemeter">
+
+<label for="appliance">Choose appliance to use:</label>
+<select name="appliance" id="appliance">
+{{#each meters}}
+ <option value="{{this.id}}">{{this.name}}</option>
+{{/each}}
+</select>
+<input type="hidden" name="meterId" value = "{{meterId}}">
+<input type="submit" value="Submit">
+</form>
+
+{{!-- [Object: null prototype] { appliance: '3', meterId: '1' } --}}

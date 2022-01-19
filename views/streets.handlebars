@@ -1,0 +1,14 @@
+<h2>Streets</h2>
+<a href = "/appliance"><input type="submit" value="show rate"></a>
+<table>
+{{#each streets}}
+<tr>
+	<td>
+		{{name}}
+	</td>
+	<td>
+		<a href="/meters/{{id}}">Meters in street</a>
+	</td>
+</tr>
+{{/each}}
+</table>
