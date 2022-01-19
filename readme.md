@@ -1,3 +1,5 @@
+[![Build Status](https://app.travis-ci.com/Vasco21/ElectricityTopupTricks.svg?branch=master)](https://app.travis-ci.com/Vasco21/ElectricityTopupTricks)
+
 # ElectricityTopupTricks
 
 Create a web app, to help your local Municipality to track electricity usage per household. Each month the Municipality gives each household 50 units each for free. Households can topup if they need extra electricity.

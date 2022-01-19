@@ -12,9 +12,15 @@ const ElectricityMeters = require('./electricity-meters');
 
 const connectionString = process.env.DATABASE_URL || 'postgresql://decproc:1234@localhost:5432/topups';
 
-const pool = new Pool({
-    connectionString  
-});
+let pool 
+if (process.env.DATABASE_URL){
+	pool = new Pool({
+		connectionString,
+		ssl: {rejectUnauthorized:false}
+	})
+}else{
+	pool = new Pool({connectionString,ssl:false})
+}
 
 // enable the req.body object - to allow us to use HTML forms
 app.use(express.json());
