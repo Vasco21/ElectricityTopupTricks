@@ -1,0 +1,9 @@
+<form method="POST" action="/total">
+    {{#each total_Balance}}
+    <p>{{this.name}}</p>
+    <p>{{this.balance}}</p>
+    {{/each}}
+</form>
+
+<br>
+<a href = "/streets"> <input type="submit" value="Show Streets"></a>

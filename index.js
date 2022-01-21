@@ -39,7 +39,7 @@ app.get('/', function(req, res) {
 
 app.get('/streets', async function(req, res) {
 	const streets = await electricityMeters.streets();
-	console.log(streets);
+
 	res.render('streets', {
 		streets
 	});
@@ -53,11 +53,10 @@ app.get('/streets', async function(req, res) {
 
 app.get('/meters/:street_id', async function(req, res) {
 	var id = req.params.street_id;
-	var data = await electricityMeters.streetMeters(id)
+	var data = await electricityMeters.streetMeters(id);
 	
 	res.render('street_meters', {
-		meters: data
-		
+		meters: data		
 	});
 });
 
@@ -68,11 +67,10 @@ app.get('/appliance', async function(req, res) {
 	})
 })
 
-
-// show the current meter balance and select the appliance you are using electricity for
+	// show the current meter balance and select the appliance you are using electricity for
 app.get('/meter/use/:meter_id', async function(req, res) {
 	var meterId = req.params.meter_id;
-	var appliance = await electricityMeters.appliances(meterId)
+	var appliance = await electricityMeters.appliances(meterId);
 
 	res.render('use_electicity', {
 		meters : appliance,
@@ -80,14 +78,40 @@ app.get('/meter/use/:meter_id', async function(req, res) {
 	});
 });
 
+app.get('/lowest_balance' , async function(req, res){
+	var lowest = req.params.balance;
+	var lowestBalanceMeter = await electricityMeters.lowestBalanceMeter(lowest);
+	
+	res.render('lowest_balance', {
+		lowestBalanceMeter : lowestBalanceMeter
+	})
+})
+
+app.get('/highest_balance' , async function(req, res){
+	var highest = req.params.balance;
+	var highestBalance = await electricityMeters.highestBalanceStreet(highest);
+	
+	res.render('highest_balance', {
+		highestBalance : highestBalance
+	})
+})
+
+app.get('/totalBalance' , async function(req, res){
+	var total = req.params.balance;
+	var total_Balance = await electricityMeters.totalStreetBalance(total);
+	
+	res.render('totalBalance', {
+		total_Balance : total_Balance
+	})
+})
+
 	// update the meter balance with the usage of the appliance selected.
 	// [Object: null prototype] { appliance: '3', meterId: '1' }
 app.post('/usemeter', async function(req, res) {
-	console.log(req.body)
 	var appliance = req.body.appliance;
 	var meterId = req.body.meterId
 
-	await electricityMeters.useElectricity(meterId, "no units",appliance)
+	await electricityMeters.useElectricity(meterId, "no units",appliance);
 	res.redirect(`/streets`);
 
 });

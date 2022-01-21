@@ -1,0 +1,11 @@
+<form method="POST" action="/lowest">
+    {{#each lowestBalanceMeter}}
+    <p>{{this.id}}</p>
+    <p>{{this.balance}}</p>
+    <p>{{this.street_number}}</p>
+    <p>{{this.name}}</p>
+    {{/each}}
+</form>
+
+<br>
+<a href = "/streets"> <input type="submit" value="Show Streets"></a>

@@ -1,0 +1,8 @@
+<form method="POST" action="/highest">
+    {{#each highestBalance}}
+    <p>{{this.name}}</p>
+    <p>{{this.balance}}</p>
+    {{/each}}
+</form>
+<br>
+<a href = "/streets"> <input type="submit" value="Show Streets"></a>
